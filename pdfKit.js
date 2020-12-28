@@ -9,10 +9,6 @@ module.exports.createPdf = function (data) {
     //Add file name
     pdfDoc.pipe(fs.createWriteStream('SampleDocument.pdf'));
 
-    pdfDoc.text(data.toString(), {
-        align: 'center'
-    });
-
     //add contact page 
     pdfDoc.text("בקשה להרשאת הרשמה לחיוב בחשבון", {
         align: 'center'
@@ -58,6 +54,14 @@ module.exports.createPdf = function (data) {
     pdfDoc.text("2.  כמו כן יחולן ההוראות הבאות:", {
         align: 'center'
     });
+
+      /*   var buffer = new Buffer(data.split(',')[1] || 'base64');
+    pdfDoc.image(buffer, 10, 10, {
+        height: 75
+    });
+ */
+    let pic = pdfDoc.image(new Buffer(data.replace('data:image/png;base64,', ''), 'base64'), 100, 100); // this will decode your base64 to a new buffer
+    let x = 3;
 
     //end and create the file
     pdfDoc.end();

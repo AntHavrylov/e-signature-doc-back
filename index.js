@@ -21,8 +21,9 @@ app.use((req,res,next)=>{
 app.post('/doc-data',(req,res)=>{
     console.log(`post request received.`);
     let body = req.body;
-    pdfkit.createPdf("balagan");
-    res.sendStatus(200);
+   // pdfkit.createPdf("balagan");
+   pdfkit.createPdf(body.pictureData);
+   res.sendStatus(200);
 })
 
 //start server
