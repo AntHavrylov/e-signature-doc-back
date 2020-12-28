@@ -9,25 +9,28 @@ const port = 3000;
 
 // expres definitions
 app.use(cors());
-app.use(bodyParser.urlencoded({extend: true}));
+app.use(bodyParser.urlencoded({
+    extend: true
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
-app.use((req,res,next)=>{
-    res.append('Access-Control-Allow-Headers','Content-Type');
+app.use((req, res, next) => {
+    res.append('Access-Control-Allow-Headers', 'Content-Type');
     next();
 })
 
 // get post request from front 
-app.post('/doc-data',(req,res)=>{
+app.post('/doc-data', async (req, res) => {
     console.log(`post request received.`);
     let body = req.body;
-   // pdfkit.createPdf("balagan");
-   pdfkit.createPdf(body.pictureData);
-   res.sendStatus(200);
+    // pdfkit.createPdf("balagan");
+    let response = await pdfkit.mainCreatePdf(body);
+
+
+    res.sendStatus(response);
 })
 
 //start server
-app.listen(port,()=>{
+app.listen(port, () => {
     console.log(`listenning at http://localhost:${port}`);
 })
-
