@@ -25,8 +25,8 @@ async function mainCreatePdf(data) {
         responseFromCreatePdfFile = await createPdf(data);
 
         //send email with pdf file
-        /*  if (responseFromCreatePdfFile.status)
-             responseFromSendEmail = await sendPdfInEmail(responseFromCreatePdfFile.pdfBufferData); */
+        if (responseFromCreatePdfFile.status)
+            responseFromSendEmail = await sendPdfInEmail(responseFromCreatePdfFile.pdfBufferData);
 
 
         resolve({
@@ -97,7 +97,7 @@ async function createPdf(data) {
             pdfDoc.text(reverseString("\n"), {
                 align: 'right'
             });
-            pdfDoc.text(reverseString(' מספר בנק: ' + data.selectedBank + '    מספר סניף: ' + data.bankBranchInput + '    מספר חשבון: ' + data.bankAccountInput), {
+            pdfDoc.text(reverseString(' מספר בנק: ' + data.bankNumberInput + '    מספר סניף: ' + data.bankBranchInput + '    מספר חשבון: ' + data.bankAccountInput), {
                 align: 'right'
             });
             pdfDoc.text(reverseString(' שם המוסד: ' + companyName + '    קוד המוסד: ' + companyNumber), {
