@@ -4,8 +4,7 @@ const log = require('./global/console');
 
 
 const emailFrom = "Pure.m.s.037791101@gmail.com";
-//const emailTo = "Pure.m.k.037791101@gmail.com";
-const emailTo = "antikgav@gmail.com";
+const emailTo = "ant.havrylov@gmail.com";
 const pass = "ybrt037791101";
 
 
