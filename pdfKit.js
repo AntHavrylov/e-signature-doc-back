@@ -4,7 +4,7 @@ const fs = require('fs');
 
 
 const companyName = "עמותת דקות הזהב על שם אדיר";
-const companyNumber = "1234321";
+const companyNumber = "21050";
 const clientNumber = ""
 
 
@@ -100,19 +100,23 @@ async function createPdf(data) {
             pdfDoc.text(reverseString(' מספר בנק: ' + data.bankNumberInput + '    מספר סניף: ' + data.bankBranchInput + '    מספר חשבון: ' + data.bankAccountInput), {
                 align: 'right'
             });
+
+            pdfDoc.text(reverseString(' הפקדה אל- '), {
+                align: 'right'
+            });
             pdfDoc.text(reverseString(' שם המוסד: ' + companyName + '    קוד המוסד: ' + companyNumber), {
                 align: 'right'
             });
 
-            pdfDoc.text(reverseString(' אסמכתא מספר מזהה של הלקוח אצל המוטב: ' + clientNumber), {
+            pdfDoc.text(reverseString('  בנק: לאומי,  סניף: 855   חשבון: 52430046 '), {
                 align: 'right'
             });
 
 
 
-            pdfDoc.text(reverseString(" הרשאה כללית, שאינה כוללת הגבלות: \n"), {
-                align: 'right'
-            }).rect(340, 239, 20, 20).stroke();
+            /*    pdfDoc.text(reverseString(" הרשאה כללית, שאינה כוללת הגבלות: \n"), {
+                   align: 'right'
+               }).rect(340, 239, 20, 20).stroke(); */
 
 
 
@@ -123,17 +127,17 @@ async function createPdf(data) {
             pdfDoc.text(reverseString(' תקרת סכום החיוב ב- ש"ח: ' + data.moneyAmountInput), {
                 align: 'right'
             });
-            pdfDoc.text(reverseString(' מועד פקיעת תוקף ההרשאה ביום: ' + data.datepickerInput), {
-                align: 'right'
-            });
+            /*   pdfDoc.text(reverseString(' מועד פקיעת תוקף ההרשאה ביום: ' + data.datepickerInput), {
+                  align: 'right'
+              }); */
 
-            pdfDoc.fillColor('red');
-            pdfDoc.text(reverseString(' לתשומת לבכם: '), {
-                align: 'right'
-            })
-            pdfDoc.text(reverseString(' אי סימון אחת מהחלופות המוצגות לעיל, משמעה בחירה בהרשאה כללית, שאינה כוללת הגבלות'), {
-                align: 'right'
-            }).fillColor('black');
+            /*   pdfDoc.fillColor('red');
+              pdfDoc.text(reverseString(' לתשומת לבכם: '), {
+                  align: 'right'
+              })
+              pdfDoc.text(reverseString(' אי סימון אחת מהחלופות המוצגות לעיל, משמעה בחירה בהרשאה כללית, שאינה כוללת הגבלות'), {
+                  align: 'right'
+              }).fillColor('black'); */
 
 
             /* 1 */
@@ -224,17 +228,17 @@ async function createPdf(data) {
 
 
             // Fit the image in the dimensions, and center it both horizontally and vertically
-            pdfDoc.image(new Buffer(data.pictureData.replace('data:image/png;base64,', ''), 'base64'), 125, 640, {
+            pdfDoc.image(new Buffer(data.pictureData.replace('data:image/png;base64,', ''), 'base64'), 125, 583, {
                     fit: [100, 100],
                     align: 'center',
                     valign: 'center'
                 })
-                .rect(120, 665, 110, 50).stroke();
+                .rect(120, 607, 110, 50).stroke();
 
 
             //end and create the file
             pdfDoc.end();
-
+ 
 
 
             //Finalize document and convert to buffer array
